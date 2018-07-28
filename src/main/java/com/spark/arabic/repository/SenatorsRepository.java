@@ -14,4 +14,6 @@ public interface SenatorsRepository extends MongoRepository <Senators, String>{
 
     //@Query(value = "{ 'person.firstname': ?0 }", fields = "{ 'person.firstname' : 1, 'person.lastname' : 1 }")
     public List<Senators> findByPersonFirstname(String firstname);
+
+    public List<Senators> findByPersonFirstnameAndPersonLastname(String firstname, String lastname);
 }

@@ -34,8 +34,8 @@ public class Application implements CommandLineRunner {
 		List<Senators> names = senatorsRepository.findByPersonFirstname("Tina");
 		System.out.println(senatorsList);
 
-		List<Customer> cust = repository.findAll();
-		System.out.println(cust);
+//		List<Customer> cust = repository.findAll();
+//		System.out.println(cust);
 
 
 		//repository.save(new Customer("Mumtaz", "Khan"));

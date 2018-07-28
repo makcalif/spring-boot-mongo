@@ -26,7 +26,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+//    compile("org.springframework.boot:spring-boot-starter-data-mongodb:2.0.3")
+//    compile('org.springframework.boot:spring-boot-starter-web:2.0.3')
+//    compile('org.springframework.boot', name: 'spring-boot-devtools:2.0.3')
+//    testCompile("org.springframework.boot:spring-boot-starter-test:2.0.3")
+
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile('org.springframework.boot:spring-boot-starter-web')
     testCompile("org.springframework.boot:spring-boot-starter-test")
+
 }
 
