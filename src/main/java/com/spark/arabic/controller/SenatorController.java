@@ -16,13 +16,28 @@ public class SenatorController {
     @Autowired
     SenatorsRepository senatorsRepository;
 
+    @GetMapping(value = "/")
+    public List<Senators> index(){
+        return senatorsRepository.findAll();
+    }
+
     @GetMapping     ("/senators/name/{firstname}/{lastname}")
     public Senators getSenatorByFirstAndLastName(@PathVariable  String firstname, @PathVariable String lastname) {
         List<Senators> senators = senatorsRepository.findByPersonFirstnameAndPersonLastname(firstname, lastname);
         return senators.get(0);
     }
 
-    @GetMapping ("/senators/all")
+    @GetMapping("/private")
+    public String getPrivate() {
+        return "private";
+    }
+
+    @GetMapping("/login")
+    public String getLogin() {
+        return "start login here";
+    }
+
+    @GetMapping ("/senators")
     public List<Senators> getAll() {
         return senatorsRepository.findAll();
     }

@@ -1,14 +1,23 @@
 package com;
 
 import com.spark.arabic.collection.Senators;
+import com.spark.arabic.config.CustomUserDetails;
+import com.spark.arabic.entities.Role;
+import com.spark.arabic.entities.User;
 import com.spark.arabic.repository.SenatorsRepository;
+import com.spark.arabic.repository.UserRepository;
 import hello.Customer;
 import hello.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -25,6 +34,13 @@ public class Application implements CommandLineRunner {
 	private SenatorsRepository senatorsRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
+	}
+
+	@Autowired
+	public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository repo) throws Exception {
+		if(repo.count() == 0)
+			repo.save(new User("user", "user", Arrays.asList( new Role("USER"), new Role("ACTUATOR"))));
+		builder.userDetailsService(username -> new CustomUserDetails(repo.findByUsername(username)));
 	}
 
 	@Override
